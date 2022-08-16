@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import io.tomoto.game.sprites.InteractiveTileObject;
 
 /**
- * Description
+ *  世界碰撞时间监听器
  *
  * @author Tomoto
  * @version 1.0 2022/6/1 9:21
@@ -18,6 +18,7 @@ public class WorldContactListener implements ContactListener {
 
         Fixture head = null;
         Fixture other = null;
+        // 头顶碰撞事件
         if ("head".equals(fixtureA.getUserData())) {
             head = fixtureA;
             other = fixtureB;

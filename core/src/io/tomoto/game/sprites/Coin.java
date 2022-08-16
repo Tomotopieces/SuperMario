@@ -4,11 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
-import io.tomoto.game.SuperMario;
 import io.tomoto.game.utils.FilterBitManager;
 
 /**
- * Description
+ * 金币砖块
  *
  * @author Tomoto
  * @version 1.0 2022/5/31 15:23
@@ -23,6 +22,6 @@ public class Coin extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
-        Gdx.app.log("Coin collision", "");
+        Gdx.app.log("Coin", "collision");
     }
 }

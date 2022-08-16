@@ -9,20 +9,37 @@ import io.tomoto.game.sprites.Brick;
 import io.tomoto.game.sprites.Coin;
 
 /**
- * Description
+ * 世界生成工具
  *
  * @author Tomoto
  * @version 1.0 2022/5/31 15:18
  * @since 1.0
  */
 public class B2WorldCreator {
+
+    /**
+     * 世界
+     */
     private final World world;
+
+    /**
+     * 瓦片地图
+     */
     private final TiledMap map;
 
+    /**
+     * @param world 世界
+     * @param map   瓦片地图
+     */
     public B2WorldCreator(World world, TiledMap map) {
         this.world = world;
         this.map = map;
+    }
 
+    /**
+     * 初始化
+     */
+    public void init() {
         createStaticBody("ground");
         createStaticBody("pipes");
 
@@ -41,6 +58,11 @@ public class B2WorldCreator {
         }
     }
 
+    /**
+     * 创建静态碰撞体
+     *
+     * @param layerName 图层名称
+     */
     public void createStaticBody(String layerName) {
         BodyDef bodyDef = new BodyDef();
         PolygonShape shape = new PolygonShape();
