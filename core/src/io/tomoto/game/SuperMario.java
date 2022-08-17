@@ -2,6 +2,11 @@ package io.tomoto.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import io.tomoto.game.event.EventCenter;
+import io.tomoto.game.event.brick.HitBrickEvent;
+import io.tomoto.game.event.brick.HitBrickEventListener;
+import io.tomoto.game.event.coin.HitCoinBrickEvent;
+import io.tomoto.game.event.coin.HitCoinBrickEventListener;
 import io.tomoto.game.screens.PlayScreen;
 
 /**
@@ -35,7 +40,16 @@ public class SuperMario extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
+        registerDefaultEvent();
         setScreen(new PlayScreen(this));
+    }
+
+    /**
+     * 注册默认事件
+     */
+    private void registerDefaultEvent() {
+        EventCenter.register(HitBrickEvent.class, new HitBrickEventListener());
+        EventCenter.register(HitCoinBrickEvent.class, new HitCoinBrickEventListener());
     }
 
     @Override

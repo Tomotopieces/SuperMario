@@ -19,10 +19,11 @@ import io.tomoto.game.SuperMario;
 import io.tomoto.game.scenes.Hud;
 import io.tomoto.game.sprites.Mario;
 import io.tomoto.game.utils.B2WorldCreator;
+import io.tomoto.game.utils.GlobalStatus;
 import io.tomoto.game.utils.WorldContactListener;
 
 /**
- * ÓÎÏ·½çÃæ
+ * æ¸¸æˆç•Œé¢
  *
  * @author Tomoto
  * @version 1.0
@@ -30,7 +31,7 @@ import io.tomoto.game.utils.WorldContactListener;
  */
 public class PlayScreen implements Screen {
 
-    /* ÓÎÏ·×é¼ş */
+    /* æ¸¸æˆç»„ä»¶ */
 
     /**
      * game
@@ -38,17 +39,17 @@ public class PlayScreen implements Screen {
     public SuperMario game;
 
     /**
-     * ¶¯»­²ğ·Ö
+     * åŠ¨ç”»æ‹†åˆ†
      */
     public TextureAtlas atlas;
 
     /**
-     * Ö÷Ïà»ú
+     * ä¸»ç›¸æœº
      */
     public OrthographicCamera gameCamera;
 
     /**
-     * ÓÎÏ·ÊÓ¿Ú
+     * æ¸¸æˆè§†å£
      */
     public Viewport gameViewport;
 
@@ -57,39 +58,39 @@ public class PlayScreen implements Screen {
      */
     public Hud hud;
 
-    /* ÍßÆ¬µØÍ¼ */
+    /* ç“¦ç‰‡åœ°å›¾ */
 
     /**
-     * µØÍ¼¼ÓÔØÆ÷
+     * åœ°å›¾åŠ è½½å™¨
      */
     public TmxMapLoader mapLoader;
 
     /**
-     * ÍßÆ¬µØÍ¼
+     * ç“¦ç‰‡åœ°å›¾
      */
     public TiledMap map;
 
     /**
-     * µØÍ¼»æÖÆÆ÷
+     * åœ°å›¾ç»˜åˆ¶å™¨
      */
     public OrthogonalTiledMapRenderer mapRenderer;
 
     /* box2d */
 
     /**
-     * ÊÀ½ç
+     * ä¸–ç•Œ
      */
     public World world;
 
     /**
-     * Åö×²±ß¿ò»æÖÆÆ÷
+     * ç¢°æ’è¾¹æ¡†ç»˜åˆ¶å™¨
      */
     public Box2DDebugRenderer debugRenderer;
 
-    /* ÓÎÏ·ÔªËØ */
+    /* æ¸¸æˆå…ƒç´  */
 
     /**
-     * Âí×Ü
+     * é©¬æ€»
      */
     public Mario mario;
 
@@ -106,6 +107,7 @@ public class PlayScreen implements Screen {
                 SuperMario.V_HEIGHT / SuperMario.PIXELS_PER_METER, gameCamera);
 
         hud = new Hud(game.batch);
+        GlobalStatus.hud = hud;
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("mario1-1.tmx");
@@ -124,9 +126,9 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     * »ñÈ¡¶¯»­²ğ·Ö
+     * è·å–åŠ¨ç”»æ‹†åˆ†
      *
-     * @return ¶¯»­²ğ·Ö
+     * @return åŠ¨ç”»æ‹†åˆ†
      */
     public TextureAtlas getAtlas() {
         return atlas;
@@ -137,9 +139,9 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     * Êı¾İÂß¼­¸üĞÂ
+     * æ•°æ®é€»è¾‘æ›´æ–°
      *
-     * @param delta Ê±¼äÔöÁ¿
+     * @param delta æ—¶é—´å¢é‡
      */
     public void update(float delta) {
         handleInput(delta);
@@ -159,9 +161,9 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     * ÊäÈë´¦Àí
+     * è¾“å…¥å¤„ç†
      *
-     * @param delta Ê±¼äÔöÁ¿
+     * @param delta æ—¶é—´å¢é‡
      */
     private void handleInput(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
@@ -188,7 +190,7 @@ public class PlayScreen implements Screen {
     }
 
     /**
-     * »­ÃæÌùÍ¼¸üĞÂ
+     * ç”»é¢è´´å›¾æ›´æ–°
      */
     private void renderTexture() {
         mapRenderer.render();

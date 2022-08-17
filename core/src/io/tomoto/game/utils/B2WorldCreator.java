@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import io.tomoto.game.SuperMario;
 import io.tomoto.game.sprites.Brick;
-import io.tomoto.game.sprites.Coin;
+import io.tomoto.game.sprites.CoinBrick;
 
 /**
  * 世界生成工具
@@ -54,7 +54,7 @@ public class B2WorldCreator {
                 map.getLayers().get("coins").getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rectangle = object.getRectangle();
 
-            new Coin(world, map, rectangle);
+            new CoinBrick(world, map, rectangle);
         }
     }
 

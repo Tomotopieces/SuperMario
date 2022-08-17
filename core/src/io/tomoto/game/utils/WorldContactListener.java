@@ -1,7 +1,11 @@
 package io.tomoto.game.utils;
 
 import com.badlogic.gdx.physics.box2d.*;
-import io.tomoto.game.sprites.InteractiveTileObject;
+import io.tomoto.game.event.EventCenter;
+import io.tomoto.game.event.brick.HitBrickEvent;
+import io.tomoto.game.event.coin.HitCoinBrickEvent;
+import io.tomoto.game.sprites.Brick;
+import io.tomoto.game.sprites.CoinBrick;
 
 /**
  *  世界碰撞时间监听器
@@ -31,8 +35,14 @@ public class WorldContactListener implements ContactListener {
             return;
         }
 
-        if (other.getUserData() instanceof InteractiveTileObject) {
-            ((InteractiveTileObject) other.getUserData()).onHeadHit();
+        if (other.getUserData() instanceof Brick) { // 砖块
+            HitBrickEvent event = new HitBrickEvent(head, other);
+            EventCenter.handleEvent(event);
+        }
+
+        if (other.getUserData() instanceof CoinBrick) { // 金币砖块
+            HitCoinBrickEvent event = new HitCoinBrickEvent(head, other, GlobalStatus.hud);
+            EventCenter.handleEvent(event);
         }
     }
 

@@ -13,8 +13,9 @@ import io.tomoto.game.utils.FilterBitManager;
  * @version 1.0 2022/5/31 15:23
  * @since 1.0
  */
-public class Coin extends InteractiveTileObject {
-    public Coin(World world, TiledMap map, Rectangle bounds) {
+public class CoinBrick extends InteractiveTileObject {
+
+    public CoinBrick(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
         fixture.setUserData(this);
         setFilterCategory(FilterBitManager.COIN_BIT);
