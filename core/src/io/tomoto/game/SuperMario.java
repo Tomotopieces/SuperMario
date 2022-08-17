@@ -3,6 +3,8 @@ package io.tomoto.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.tomoto.game.event.EventCenter;
+import io.tomoto.game.event.attack.AttackEvent;
+import io.tomoto.game.event.attack.AttackEventListener;
 import io.tomoto.game.event.brick.HitBrickEvent;
 import io.tomoto.game.event.brick.HitBrickEventListener;
 import io.tomoto.game.event.coin.HitCoinBrickEvent;
@@ -50,6 +52,7 @@ public class SuperMario extends Game {
     private void registerDefaultEvent() {
         EventCenter.register(HitBrickEvent.class, new HitBrickEventListener());
         EventCenter.register(HitCoinBrickEvent.class, new HitCoinBrickEventListener());
+        EventCenter.register(AttackEvent.class, new AttackEventListener());
     }
 
     @Override

@@ -34,4 +34,14 @@ public class FilterBitManager {
      */
     public static final short COIN_BIT = 16;
 
+    /**
+     * 敌人
+     */
+    public static final short ENEMY_BIT = 32;
+
+    /**
+     * 攻击范围
+     */
+    public static final short ATTACK_BIT = 64;
+
 }

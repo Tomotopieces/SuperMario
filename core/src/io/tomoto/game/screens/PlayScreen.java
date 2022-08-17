@@ -16,7 +16,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.tomoto.game.SuperMario;
+import io.tomoto.game.event.EventCenter;
+import io.tomoto.game.event.attack.AttackEvent;
 import io.tomoto.game.scenes.Hud;
+import io.tomoto.game.sprites.Enemy;
 import io.tomoto.game.sprites.Mario;
 import io.tomoto.game.utils.B2WorldCreator;
 import io.tomoto.game.utils.GlobalStatus;
@@ -95,6 +98,11 @@ public class PlayScreen implements Screen {
     public Mario mario;
 
     /**
+     * 敌人
+     */
+    private Enemy enemy;
+
+    /**
      * @param game game
      */
     public PlayScreen(SuperMario game) {
@@ -121,6 +129,8 @@ public class PlayScreen implements Screen {
         new B2WorldCreator(world, map).init();
 
         mario = new Mario(world, this);
+
+        enemy = new Enemy(world);
 
         world.setContactListener(new WorldContactListener());
     }
@@ -175,6 +185,9 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && mario.body.getLinearVelocity().x >= -2f) {
             mario.body.applyLinearImpulse(new Vector2(-.1f, 0), mario.body.getWorldCenter(), true);
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            EventCenter.handleEvent(new AttackEvent(mario.attack));
+        }
     }
 
     @Override
@@ -184,7 +197,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderTexture();
+//        renderTexture();
 
         debugRenderer.render(world, gameCamera.combined);
     }

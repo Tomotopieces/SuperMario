@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import io.tomoto.game.SuperMario;
 import io.tomoto.game.screens.PlayScreen;
+import io.tomoto.game.skill.Attack;
 import io.tomoto.game.utils.FilterBitManager;
 
 /**
@@ -67,7 +68,9 @@ public class Mario extends Sprite {
     /**
      * 是否面向右边
      */
-    private boolean facingRight;
+    public boolean facingRight;
+
+    public Attack attack;
 
     /**
      * @param world  世界
@@ -105,6 +108,7 @@ public class Mario extends Sprite {
      */
     public void update(float delta) {
         setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        attack.updatePosition();
         setRegion(getFrame(delta));
     }
 
@@ -176,7 +180,7 @@ public class Mario extends Sprite {
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / SuperMario.PIXELS_PER_METER);
         fixtureDef.filter.categoryBits = FilterBitManager.MARIO_BIT;
-        fixtureDef.filter.maskBits = FilterBitManager.DEFAULT_BIT | FilterBitManager.COIN_BIT | FilterBitManager.BRICK_BIT;
+        fixtureDef.filter.maskBits = FilterBitManager.DEFAULT_BIT | FilterBitManager.COIN_BIT | FilterBitManager.BRICK_BIT | FilterBitManager.ENEMY_BIT;
         fixtureDef.shape = shape;
         body.createFixture(fixtureDef);
 
@@ -188,5 +192,7 @@ public class Mario extends Sprite {
         fixtureDef.isSensor = true;
 
         body.createFixture(fixtureDef).setUserData("head");
+
+        attack = new Attack(world, this);
     }
 }
